@@ -1362,10 +1362,12 @@
       .match-side.right { text-align: left; }
       .nav-links { display: none; }
       .history-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-      .history-card { aspect-ratio: unset; height: 320px; }
-      .history-card-overlay { background: linear-gradient(to top, rgba(6,10,18,1) 0%, rgba(6,10,18,0.98) 32%, rgba(6,10,18,0.2) 58%, rgba(6,10,18,0) 78%); }
+      .history-card { aspect-ratio: unset; height: auto; overflow: hidden; border-radius: 4px; border: 1px solid rgba(255,255,255,0.07); }
+      .history-card-photo { position: static; display: block; width: 100%; height: auto; object-fit: unset; max-width: 100%; inset: unset; transform: none !important; }
+      .history-card-overlay { display: none; }
       .history-card-year { display: none; }
-      .history-card-venue { font-size: 1.4rem; }
+      .history-card-content { position: static; inset: unset; background: var(--dark-panel); padding: 1rem 1.25rem; justify-content: flex-start; }
+      .history-card-venue { font-size: 1.3rem; margin-bottom: 0.4rem; }
       .history-card-badge { font-size: 0.62rem; letter-spacing: 0.15em; }
     }
 

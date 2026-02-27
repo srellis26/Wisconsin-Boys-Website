@@ -1,0 +1,16 @@
+# Reference images (not used in the deployed site)
+IMG_5718.png
+IMG_5719.png
+
+# Local dev server
+serve.mjs
+
+# Claude project instructions
+CLAUDE.md
+
+# Local screenshot tool
+screenshot.mjs
+temporary screenshots/
+
+# App subfolder (separate project)
+Golf_trip_app/

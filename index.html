@@ -1361,8 +1361,14 @@
       }
       .match-side.right { text-align: left; }
       .nav-links { display: none; }
-      .history-grid { grid-template-columns: 1fr; }
-      .history-card { aspect-ratio: 16/9; }
+      .history-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      .history-card { aspect-ratio: unset; height: auto; display: flex; flex-direction: column; }
+      .history-card-photo { position: static; width: 100%; height: 220px; object-fit: cover; object-position: center center; border-radius: 4px 4px 0 0; display: block; }
+      .history-card-overlay { display: none; }
+      .history-card-year { display: none; }
+      .history-card-content { position: static; background: var(--dark-panel); border-radius: 0 0 4px 4px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.06); border-top: none; }
+      .history-card-venue { font-size: 1.4rem; margin-bottom: 0.5rem; }
+      .history-card-badge { font-size: 0.6rem; padding: 0.35rem 0.8rem; }
     }
 
     /* ═══════════════════════════════════════

@@ -1361,8 +1361,13 @@
       }
       .match-side.right { text-align: left; }
       .nav-links { display: none; }
-      .history-grid { grid-template-columns: 1fr; }
-      .history-card { aspect-ratio: 16/9; }
+      .history-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      .history-card { aspect-ratio: unset; height: 400px; }
+      .history-card-overlay { background: linear-gradient(to top, rgba(6,10,18,1) 0%, rgba(6,10,18,0.97) 30%, rgba(6,10,18,0.35) 55%, rgba(6,10,18,0) 75%); }
+      .history-card-year { font-size: 7rem; color: rgba(255,255,255,0.13); top: 0.75rem; left: 1rem; }
+      .history-card-content { padding: 1.5rem 1.25rem; }
+      .history-card-venue { font-size: 1.65rem; margin-bottom: 0.5rem; }
+      .history-card-badge { font-size: 0.65rem; padding: 0.35rem 0.85rem; }
     }
 
     /* ═══════════════════════════════════════

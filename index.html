@@ -1455,9 +1455,10 @@
       .teams-layout { grid-template-columns: 1fr; }
       .vs-col { display: none; }
       .info-grid { grid-template-columns: 1fr; }
-      .flights-col-headers { display: none; }
-      .flights-row { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 1.5rem; }
-      .flights-player-cell { margin-bottom: 0.25rem; }
+      .flights-col-headers { display: grid; grid-template-columns: 1fr 1fr; padding: 0.7rem 1.25rem; }
+      .flights-col-header:first-child { display: none; }
+      .flights-row { grid-template-columns: 1fr 1fr; gap: 0.35rem 0; padding: 0.9rem 1.25rem; }
+      .flights-player-cell { grid-column: 1 / -1; margin-bottom: 0.3rem; }
       .hero-teams { gap: 2.5rem; }
       .match-card {
         grid-template-columns: 1fr;

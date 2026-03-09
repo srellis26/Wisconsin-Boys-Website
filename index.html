@@ -1008,6 +1008,133 @@
     }
 
     /* ═══════════════════════════════════════
+       FLIGHTS SECTION
+    ═══════════════════════════════════════ */
+    .flights-section {
+      background: var(--dark);
+    }
+    .flights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .flight-leg {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 2rem 2.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .flight-leg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold-light), var(--gold-dim));
+    }
+    .flight-direction {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .flight-route-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .flight-airport {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.8rem;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .flight-time-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .flight-date-label {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-top: 0.3rem;
+    }
+    .flight-players-label {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 0.6rem;
+    }
+    .flight-player-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .flight-player-row:last-child { border-bottom: none; }
+    .flight-player-identity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .flight-team-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .flight-team-dot.ct { background: var(--ct-blue-glow); }
+    .flight-team-dot.ma { background: var(--ma-red-glow); }
+    .flight-player-name {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--cream);
+    }
+    .flight-player-name.tbd-player {
+      color: var(--cream-dim);
+      opacity: 0.5;
+    }
+    .flight-status {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.55rem;
+      border-radius: 2px;
+    }
+    .flight-status.booked {
+      background: rgba(200,164,74,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200,164,74,0.3);
+    }
+    .flight-status.tbd {
+      background: rgba(255,255,255,0.03);
+      color: var(--cream-dim);
+      border: 1px solid rgba(255,255,255,0.07);
+      opacity: 0.5;
+    }
+
+    /* ═══════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════ */
     .footer {
@@ -1354,6 +1481,7 @@
       .teams-layout { grid-template-columns: 1fr; }
       .vs-col { display: none; }
       .info-grid { grid-template-columns: 1fr; }
+      .flights-grid { grid-template-columns: 1fr; }
       .hero-teams { gap: 2.5rem; }
       .match-card {
         grid-template-columns: 1fr;
@@ -1750,6 +1878,7 @@
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#courses">Courses</a></li>
       <li><a href="#stay">Stay &amp; Dine</a></li>
+      <li><a href="#flights">Flights</a></li>
     </ul>
   </nav>
 
@@ -2580,6 +2709,111 @@
             Intro email goes out ~60 days prior to arrival (3/20/26).<br/>
             Dinner reservations can be booked at that time.<br/>
             Caddies confirmed for all rounds — changeable up to 7 days prior.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FLIGHTS
+  ══════════════════════════════════════ -->
+  <section class="section flights-section" id="flights">
+    <div class="section-inner">
+      <div class="rule"><div class="rule-line"></div><div class="rule-diamond"></div><div class="rule-line"></div></div>
+      <p class="section-eyebrow reveal">Travel</p>
+      <h2 class="section-title reveal reveal-d1">Flights</h2>
+
+      <div class="flights-grid">
+
+        <!-- Arrival -->
+        <div class="flight-leg reveal">
+          <div class="flight-direction">&#9992; Arrival</div>
+          <div class="flight-route-row">
+            <div class="flight-airport">MKE</div>
+            <div>
+              <div class="flight-time-big">10:53 AM</div>
+              <div class="flight-date-label">Tue &middot; May 19, 2026</div>
+            </div>
+          </div>
+          <div class="flight-players-label">Player Travel Status</div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Tom McCarthy</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Mike Gallic</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Colin Kupfer</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Steve Ellis</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name tbd-player">Keith DeSchamp</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Chad Gallagher</span></div>
+            <span class="flight-status booked">Booked</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Tim Labrie</span></div>
+            <span class="flight-status booked">Booked</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Garret Smith</span></div>
+            <span class="flight-status booked">Booked</span>
+          </div>
+        </div>
+
+        <!-- Departure -->
+        <div class="flight-leg reveal reveal-d1">
+          <div class="flight-direction">&#9992; Departure</div>
+          <div class="flight-route-row">
+            <div class="flight-airport">MKE</div>
+            <div>
+              <div class="flight-time-big">6:55 PM</div>
+              <div class="flight-date-label">Fri &middot; May 22, 2026</div>
+            </div>
+          </div>
+          <div class="flight-players-label">Player Travel Status</div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Tom McCarthy</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Mike Gallic</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Colin Kupfer</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ct"></div><span class="flight-player-name tbd-player">Steve Ellis</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name tbd-player">Keith DeSchamp</span></div>
+            <span class="flight-status tbd">TBD</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Chad Gallagher</span></div>
+            <span class="flight-status booked">Booked</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Tim Labrie</span></div>
+            <span class="flight-status booked">Booked</span>
+          </div>
+          <div class="flight-player-row">
+            <div class="flight-player-identity"><div class="flight-team-dot ma"></div><span class="flight-player-name">Garret Smith</span></div>
+            <span class="flight-status booked">Booked</span>
           </div>
         </div>
 

@@ -1465,6 +1465,71 @@
       }
       .match-side.right { text-align: left; }
       .nav-links { display: none; }
+      body { padding-bottom: 60px; }
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE BOTTOM NAV
+    ═══════════════════════════════════════ */
+    .mobile-nav {
+      display: none;
+    }
+    @media (max-width: 800px) {
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: rgba(6,10,18,0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        height: 52px;
+        align-items: center;
+        gap: 0;
+        padding: 0 0.5rem;
+      }
+      .mobile-nav::-webkit-scrollbar { display: none; }
+      .mobile-nav-item {
+        flex-shrink: 0;
+        padding: 0 0.85rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 700;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cream-dim);
+        white-space: nowrap;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+      .mobile-nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0.85rem;
+        right: 0.85rem;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .mobile-nav-item.active {
+        color: var(--gold);
+      }
+      .mobile-nav-item.active::after {
+        transform: scaleX(1);
+      }
     }
 
     /* ═══════════════════════════════════════
@@ -2928,6 +2993,39 @@
         });
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
+  </script>
+
+  <!-- Mobile bottom nav -->
+  <nav class="mobile-nav">
+    <a class="mobile-nav-item" href="#lenny">Memory</a>
+    <a class="mobile-nav-item" href="#history">History</a>
+    <a class="mobile-nav-item" href="#teams">Teams</a>
+    <a class="mobile-nav-item" href="#schedule">Schedule</a>
+    <a class="mobile-nav-item" href="#courses">Courses</a>
+    <a class="mobile-nav-item" href="#stay">Stay &amp; Dine</a>
+    <a class="mobile-nav-item" href="#flights">Flights</a>
+  </nav>
+
+  <script>
+    // Mobile nav active state
+    (function() {
+      const sections = ['lenny','history','teams','schedule','courses','stay','flights'];
+      const items = document.querySelectorAll('.mobile-nav-item');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            items.forEach(item => {
+              item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) obs.observe(el);
+      });
     })();
   </script>
 

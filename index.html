@@ -672,6 +672,135 @@
       padding: 0 1rem;
     }
 
+    /* Score input controls */
+    .score-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+    }
+    .score-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--cream);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      font-family: monospace;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .score-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); }
+    .score-btn.ct-plus { background: rgba(59,116,216,0.25); border-color: rgba(59,116,216,0.5); color: var(--ct-text); }
+    .score-btn.ct-plus:hover { background: rgba(59,116,216,0.4); }
+    .score-btn.ma-plus { background: rgba(208,48,64,0.25); border-color: rgba(208,48,64,0.5); color: var(--ma-text); }
+    .score-btn.ma-plus:hover { background: rgba(208,48,64,0.4); }
+    .score-btn-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      opacity: 0.5;
+      margin-top: 0.3rem;
+    }
+
+    /* Ryder Cup progress bar */
+    .rc-progress-wrap {
+      padding: 1.25rem 2rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .rc-progress-track {
+      position: relative;
+      height: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 99px;
+      overflow: visible;
+    }
+    .rc-progress-ct {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: linear-gradient(to right, var(--ct-navy-mid), var(--ct-blue-glow));
+      border-radius: 99px 0 0 99px;
+      transition: width 0.4s cubic-bezier(0.34,1.4,0.64,1);
+      min-width: 0;
+    }
+    .rc-progress-ma {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      background: linear-gradient(to left, var(--ma-maroon-mid), var(--ma-red-glow));
+      border-radius: 0 99px 99px 0;
+      transition: width 0.4s cubic-bezier(0.34,1.4,0.64,1);
+      min-width: 0;
+    }
+    .rc-threshold {
+      position: absolute;
+      left: 50%;
+      top: -5px;
+      bottom: -5px;
+      width: 2px;
+      background: var(--gold);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .rc-threshold::before {
+      content: '20';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .rc-progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+    .rc-progress-labels .ct-lbl { color: var(--ct-text); }
+    .rc-progress-labels .ma-lbl { color: var(--ma-text); }
+    .rc-progress-labels .mid-lbl { color: var(--gold); }
+
+    /* Status bar */
+    .rc-status-bar {
+      padding: 0.9rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 1.25rem;
+    }
+    .rc-status-msg {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      min-height: 1.2em;
+    }
+    .rc-status-msg.ct-winning { color: var(--ct-text); }
+    .rc-status-msg.ma-winning { color: var(--ma-text); }
+    .rc-status-msg.cup-retained { color: var(--gold); }
+    .rc-pts-note {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      opacity: 0.4;
+      margin-top: 0.35rem;
+    }
+
     /* ═══════════════════════════════════════
        SCHEDULE SECTION
     ═══════════════════════════════════════ */
@@ -2452,15 +2581,45 @@
       <div class="scoreboard-body">
         <div class="score-team">
           <div class="score-team-name ct">Team CT</div>
-          <div class="score-num">0</div>
+          <div class="score-num" id="rc-ct-score">0</div>
           <div class="score-status">Connecticut · Defending Champs</div>
+          <div class="score-controls">
+            <button class="score-btn" onclick="updateRCScore('ct',-0.5)" aria-label="minus">−</button>
+            <button class="score-btn ct-plus" onclick="updateRCScore('ct',0.5)" aria-label="plus">+</button>
+          </div>
+          <div class="score-btn-label">½ pt per tap</div>
         </div>
         <div class="score-divider">–</div>
         <div class="score-team">
           <div class="score-team-name ma">Team MA</div>
-          <div class="score-num">0</div>
+          <div class="score-num" id="rc-ma-score">0</div>
           <div class="score-status">Massachusetts · Challenger</div>
+          <div class="score-controls">
+            <button class="score-btn" onclick="updateRCScore('ma',-0.5)" aria-label="minus">−</button>
+            <button class="score-btn ma-plus" onclick="updateRCScore('ma',0.5)" aria-label="plus">+</button>
+          </div>
+          <div class="score-btn-label">½ pt per tap</div>
         </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="rc-progress-wrap">
+        <div class="rc-progress-track">
+          <div class="rc-progress-ct" id="rc-bar-ct" style="width:0%"></div>
+          <div class="rc-progress-ma" id="rc-bar-ma" style="width:0%"></div>
+          <div class="rc-threshold"></div>
+        </div>
+        <div class="rc-progress-labels">
+          <span class="ct-lbl">Team CT</span>
+          <span class="mid-lbl">20 pts to retain</span>
+          <span class="ma-lbl">Team MA</span>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="rc-status-bar">
+        <div class="rc-status-msg" id="rc-status-msg">CT needs 20 pts to retain the Cup</div>
+        <div class="rc-pts-note">40 points total · ½ pt increments · resets on refresh</div>
       </div>
     </div>
   </div>
@@ -3224,6 +3383,67 @@
       }
       tick();
       setInterval(tick, 1000);
+    })();
+
+    // ── Ryder Cup Live Scoring ────────────
+    (function() {
+      let ctScore = parseFloat(localStorage.getItem('rc-ct') || '0');
+      let maScore = parseFloat(localStorage.getItem('rc-ma') || '0');
+
+      function fmtScore(n) {
+        const whole = Math.floor(n);
+        const half  = n % 1 !== 0;
+        if (whole === 0 && half) return '½';
+        if (half) return whole + '½';
+        return String(whole);
+      }
+
+      function renderRC() {
+        document.getElementById('rc-ct-score').textContent = fmtScore(ctScore);
+        document.getElementById('rc-ma-score').textContent = fmtScore(maScore);
+        document.getElementById('rc-bar-ct').style.width = (ctScore / 40 * 100) + '%';
+        document.getElementById('rc-bar-ma').style.width = (maScore / 40 * 100) + '%';
+
+        const msgEl = document.getElementById('rc-status-msg');
+        msgEl.className = 'rc-status-msg';
+
+        if (ctScore >= 20 && maScore >= 20) {
+          msgEl.textContent = 'Tied at 20 — CT retains the Cup';
+          msgEl.classList.add('cup-retained');
+        } else if (ctScore >= 20) {
+          msgEl.textContent = 'Team CT retains the Ryder Cup!';
+          msgEl.classList.add('cup-retained');
+        } else if (maScore > 20) {
+          msgEl.textContent = 'Team MA wins the Ryder Cup!';
+          msgEl.classList.add('ma-winning');
+        } else if (ctScore > maScore) {
+          const needs = 20 - ctScore;
+          msgEl.textContent = 'CT leads ' + fmtScore(ctScore) + '\u2013' + fmtScore(maScore) + ' \u00b7 needs ' + fmtScore(needs) + ' more to retain';
+          msgEl.classList.add('ct-winning');
+        } else if (maScore > ctScore) {
+          const needs = 20 - ctScore;
+          msgEl.textContent = 'MA leads ' + fmtScore(maScore) + '\u2013' + fmtScore(ctScore) + ' \u00b7 CT needs ' + fmtScore(needs) + ' more to retain';
+          msgEl.classList.add('ma-winning');
+        } else if (ctScore === 0) {
+          msgEl.textContent = 'CT needs 20 pts to retain the Cup';
+        } else {
+          const needs = 20 - ctScore;
+          msgEl.textContent = 'All square at ' + fmtScore(ctScore) + ' \u00b7 CT needs ' + fmtScore(needs) + ' more to retain';
+        }
+      }
+
+      window.updateRCScore = function(team, delta) {
+        if (team === 'ct') {
+          ctScore = Math.max(0, Math.min(40, ctScore + delta));
+          localStorage.setItem('rc-ct', ctScore);
+        } else {
+          maScore = Math.max(0, Math.min(40, maScore + delta));
+          localStorage.setItem('rc-ma', maScore);
+        }
+        renderRC();
+      };
+
+      renderRC();
     })();
 
     // ── Birdie Counter ───────────────────

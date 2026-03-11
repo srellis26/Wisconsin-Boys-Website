@@ -851,6 +851,103 @@
       text-align: center;
     }
 
+    /* ── Format section ── */
+    .format-intro {
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      opacity: 0.8;
+    }
+    .format-scoring {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+    .format-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 1.5rem 1.25rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .format-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--ct-blue-glow), var(--ma-red-glow));
+    }
+    .format-card-label {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .format-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .format-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 2px;
+    }
+    .format-outcome {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      opacity: 0.6;
+    }
+    .format-pts {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-light);
+      white-space: nowrap;
+    }
+    .format-pts-sub {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      opacity: 0.45;
+    }
+    .format-total-note {
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-top: 0;
+    }
+    @media (max-width: 800px) {
+      .format-scoring { grid-template-columns: 1fr; max-width: 360px; }
+    }
+
     /* Tee time card (single team) */
     .tee-card {
       display: flex;
@@ -1953,6 +2050,7 @@
       <li><a href="#lenny">In Memory</a></li>
       <li><a href="#history">History</a></li>
       <li><a href="#teams">The Teams</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#courses">Courses</a></li>
       <li><a href="#stay">Stay &amp; Dine</a></li>
@@ -2366,6 +2464,107 @@
       </div>
     </div>
   </div>
+
+  <!-- ══════════════════════════════════════
+       FORMAT
+  ══════════════════════════════════════ -->
+  <section class="section" id="format">
+    <div class="section-inner">
+      <div class="rule"><div class="rule-line"></div><div class="rule-diamond"></div><div class="rule-line"></div></div>
+      <p class="section-eyebrow reveal">How It Works</p>
+      <h2 class="section-title reveal reveal-d1">Match Format</h2>
+
+      <p class="format-intro reveal reveal-d2">All 10 matches are played as 18-hole stroke-play match play. Each match puts <strong>4 points</strong> on the line — split across three separate battles within the same round.</p>
+
+      <div class="format-scoring reveal reveal-d3">
+
+        <div class="format-card">
+          <div class="format-card-label">Front 9</div>
+          <div class="format-rows">
+            <div class="format-row">
+              <div class="format-outcome">Win</div>
+              <div>
+                <div class="format-pts">1</div>
+                <div class="format-pts-sub">point</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Tie</div>
+              <div>
+                <div class="format-pts">½</div>
+                <div class="format-pts-sub">each</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Loss</div>
+              <div>
+                <div class="format-pts">0</div>
+                <div class="format-pts-sub">points</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div class="format-card-label">Back 9</div>
+          <div class="format-rows">
+            <div class="format-row">
+              <div class="format-outcome">Win</div>
+              <div>
+                <div class="format-pts">1</div>
+                <div class="format-pts-sub">point</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Tie</div>
+              <div>
+                <div class="format-pts">½</div>
+                <div class="format-pts-sub">each</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Loss</div>
+              <div>
+                <div class="format-pts">0</div>
+                <div class="format-pts-sub">points</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div class="format-card-label">Overall 18</div>
+          <div class="format-rows">
+            <div class="format-row">
+              <div class="format-outcome">Win</div>
+              <div>
+                <div class="format-pts">2</div>
+                <div class="format-pts-sub">points</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Tie</div>
+              <div>
+                <div class="format-pts">1</div>
+                <div class="format-pts-sub">each</div>
+              </div>
+            </div>
+            <div class="format-row">
+              <div class="format-outcome">Loss</div>
+              <div>
+                <div class="format-pts">0</div>
+                <div class="format-pts-sub">points</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="format-total-note reveal reveal-d4">4 points per match &middot; 40 total points across all 10 matches</p>
+
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════
        SCHEDULE
@@ -3074,6 +3273,7 @@
     <a class="mobile-nav-item" href="#lenny">Memory</a>
     <a class="mobile-nav-item" href="#history">History</a>
     <a class="mobile-nav-item" href="#teams">Teams</a>
+    <a class="mobile-nav-item" href="#format">Format</a>
     <a class="mobile-nav-item" href="#schedule">Schedule</a>
     <a class="mobile-nav-item" href="#courses">Courses</a>
     <a class="mobile-nav-item" href="#stay">Stay &amp; Dine</a>
@@ -3083,7 +3283,7 @@
   <script>
     // Mobile nav active state
     (function() {
-      const sections = ['lenny','history','teams','schedule','courses','stay','flights'];
+      const sections = ['lenny','history','teams','format','schedule','courses','stay','flights'];
       const items = document.querySelectorAll('.mobile-nav-item');
       const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {

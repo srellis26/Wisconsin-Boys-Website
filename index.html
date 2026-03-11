@@ -2619,7 +2619,7 @@
       <!-- Status -->
       <div class="rc-status-bar">
         <div class="rc-status-msg" id="rc-status-msg">CT needs 20 pts to retain the Cup</div>
-        <div class="rc-pts-note">40 points total · ½ pt increments · resets on refresh</div>
+        <div class="rc-pts-note"><span id="rc-pts-remaining">40</span> points remaining · ½ pt increments · resets on refresh</div>
       </div>
     </div>
   </div>
@@ -3394,6 +3394,7 @@
         document.getElementById('rc-ma-score').textContent = fmtScore(maScore);
         document.getElementById('rc-bar-ct').style.width = (ctScore / 40 * 100) + '%';
         document.getElementById('rc-bar-ma').style.width = (maScore / 40 * 100) + '%';
+        document.getElementById('rc-pts-remaining').textContent = fmtScore(40 - ctScore - maScore);
 
         const msgEl = document.getElementById('rc-status-msg');
         msgEl.className = 'rc-status-msg';
